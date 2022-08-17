@@ -23,7 +23,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val pagerAdapter: PagerAdapter by lazy {
         PagerAdapter(
-            onClick = { cr ->
+            onClick = { item ->
             }
         )
     }
@@ -43,6 +43,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     private fun setupPagerAdapter() {

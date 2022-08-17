@@ -48,6 +48,5 @@ class PagerAdapter(
     fun updateData(newListDirect: List<PagerItem>, newListOther: List<PagerItem>) {
         listDirect = newListDirect
         listOther = newListOther
-        notifyDataSetChanged()
     }
 }
