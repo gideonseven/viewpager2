@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-        <import type="android.view.View" />
-
-        <import type="androidx.core.text.HtmlCompat" />
-
-        <variable
-            name="vm"
-            type="com.learn.viewpager2.view.MainViewModel" />
-
-        <variable
-            name="safeOnClick"
-            type="kotlin.jvm.functions.Function1&lt;android.view.View,kotlin.Unit&gt;" />
-    </data>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
@@ -24,7 +10,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_cr"
+            android:id="@+id/tab"
             style="@style/TabLayout.Full.Primary.Small"
             android:focusableInTouchMode="true"
             app:elevation="@dimen/_4dp"
@@ -33,13 +19,45 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_cr"
+            android:id="@+id/vp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_0dp"
             android:nestedScrollingEnabled="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/cv_send"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tab_cr" />
+            app:layout_constraintTop_toBottomOf="@+id/tab" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TextContent.BXS.Bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_12dp"
+                    android:text="@{`Mini Info`}"
+                    tools:text="(1) Mini info" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_confirm"
+                    style="@style/Button.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_20dp"
+                    android:text="@string/go_to" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

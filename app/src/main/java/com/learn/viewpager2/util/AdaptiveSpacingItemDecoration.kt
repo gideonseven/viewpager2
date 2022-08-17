@@ -17,7 +17,12 @@ class AdaptiveSpacingItemDecoration(
     private val size: Int,
     private val edgeEnabled: Boolean = false
 ) : RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         // Separate layout type
         when (val layoutManager = parent.layoutManager) {
             is GridLayoutManager -> {
@@ -116,8 +121,10 @@ class AdaptiveSpacingItemDecoration(
         }
 
         // Grid position. Imagine all items ordered in x/y axis
-        val xAxis = if (orientation == RecyclerView.HORIZONTAL) position / spanCount else position % spanCount
-        val yAxis = if (orientation == RecyclerView.HORIZONTAL) position % spanCount else position / spanCount
+        val xAxis =
+            if (orientation == RecyclerView.HORIZONTAL) position / spanCount else position % spanCount
+        val yAxis =
+            if (orientation == RecyclerView.HORIZONTAL) position % spanCount else position / spanCount
 
         // Conditions in row and column
         val isFirstColumn = xAxis == 0
@@ -137,7 +144,8 @@ class AdaptiveSpacingItemDecoration(
             RecyclerView.HORIZONTAL -> { // Row fixed. Number of rows is spanCount
                 with(outRect) {
                     left = if (isReversed) sizeBasedOnLastColumn else sizeBasedOnFirstColumn
-                    top = if (edgeEnabled) size * (spanCount - yAxis) / (spanCount) else size * yAxis / spanCount
+                    top =
+                        if (edgeEnabled) size * (spanCount - yAxis) / (spanCount) else size * yAxis / spanCount
                     right = if (isReversed) sizeBasedOnFirstColumn else sizeBasedOnLastColumn
                     bottom = if (edgeEnabled) {
                         size * (yAxis + 1) / spanCount
@@ -148,7 +156,8 @@ class AdaptiveSpacingItemDecoration(
             }
             RecyclerView.VERTICAL -> { // Column fixed. Number of columns is spanCount
                 with(outRect) {
-                    left = if (edgeEnabled) size * (spanCount - xAxis) / (spanCount) else size * xAxis / spanCount
+                    left =
+                        if (edgeEnabled) size * (spanCount - xAxis) / (spanCount) else size * xAxis / spanCount
                     top = if (isReversed) sizeBasedOnLastRow else sizeBasedOnFirstRow
                     right = if (edgeEnabled) {
                         size * (xAxis + 1) / spanCount

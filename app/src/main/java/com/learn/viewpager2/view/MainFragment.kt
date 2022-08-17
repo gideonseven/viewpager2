@@ -3,7 +3,6 @@ package com.learn.viewpager2.view
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -21,12 +20,6 @@ import com.learn.viewpager2.view.adapter.PagerAdapter
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private var binding: FragmentMainBinding? = null
-
-    private val viewModel: MainViewModel by lazy { MainViewModel() }
-
-    private var cardHeight = 0
-    private var tabHeight = 0
-    private var containerHeight = 0
 
     private val pagerAdapter: PagerAdapter by lazy {
         PagerAdapter(
@@ -53,7 +46,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun setupPagerAdapter() {
-        binding?.vpCr?.apply {
+        binding?.vp?.apply {
             val vp = this
             adapter = pagerAdapter
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -64,7 +57,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             })
 
-            binding?.tabCr?.apply {
+            binding?.tab?.apply {
                 //SetTitle
                 val titles =
                     arrayOf(getString(R.string.tab_one), getString(R.string.tab_two))
@@ -73,6 +66,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     tab.text = titles[position]
                 }.attach()
             }
+
+            //update data to pagerAdapter
 
             pagerAdapter.updateData(
                 newListDirect = listDirect(),
@@ -83,7 +78,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun listDirect(): List<PagerItem> {
         val list = arrayListOf<PagerItem>()
-        for(i in 0 until 3){
+        for (i in 0 until 3) {
             list.add(PagerItem(actionTextId = R.string.item))
         }
         return list
@@ -91,7 +86,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun listInDirect(): List<PagerItem> {
         val list = arrayListOf<PagerItem>()
-        for(i in 0 until 10){
+        for (i in 0 until 10) {
             list.add(PagerItem(actionTextId = R.string.item))
         }
         return list
