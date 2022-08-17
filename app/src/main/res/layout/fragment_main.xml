@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.core.text.HtmlCompat" />
+
+        <variable
+            name="vm"
+            type="com.learn.viewpager2.view.MainViewModel" />
+
+        <variable
+            name="safeOnClick"
+            type="kotlin.jvm.functions.Function1&lt;android.view.View,kotlin.Unit&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_cr"
+            style="@style/TabLayout.Full.Primary.Small"
+            android:focusableInTouchMode="true"
+            app:elevation="@dimen/_4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_cr"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_0dp"
+            android:nestedScrollingEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_cr" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

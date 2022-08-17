@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.learn.viewpager2.data.PagerItem" />
+
+        <variable
+            name="hideLine"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        tools:ignore="UnusedAttribute">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_one"
+            tools:src="@drawable/ic_no_image" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            style="@style/TextContent.BM.Bold"
+            android:layout_marginStart="@dimen/_8dp"
+            android:text="@{item.actionTextId}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/line"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="menu 1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_forward"
+            app:layout_constraintBottom_toBottomOf="@+id/line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@color/black"
+            android:visibility="@{hideLine ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
